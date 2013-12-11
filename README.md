@@ -16,7 +16,7 @@ To prevent that the code is ran in a live app we are using a `#ifdef FAKE_LOCATI
 
 ### CLLocationManager ###
 
-`#import "CLLocationManager+HTTPLocations` in your ViewController or location managment class. To let the location manager listen for fake locations do a `[self.locationManager listenForFakeLocations]`. To stop do a `[self.locationManager stopListening]`. Everything else shoulde behave like your would expect. Right now the location manager will give you delegate calls for errors, heading and location updates.
+`#import "CLLocationManager+HTTPLocations` in your ViewController or location managment class. To let the location manager listen for fake locations do a `[self.locationManager listenForFakeLocations]`. To stop do a `[self.locationManager stopListening]`. Everything else should behave like you would expect. Right now the location manager will give you delegate calls for errors, heading and location updates.
 
 ### Injecting locations ###
 
