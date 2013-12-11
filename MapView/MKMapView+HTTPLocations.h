@@ -21,7 +21,7 @@
  * apns max length is 256 bytes
  */
 #define BUFLEN 512
-#define PORT 9930
+#define PORT 9931
 
 @interface MKMapView (HTTPLocations)
 
