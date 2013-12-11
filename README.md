@@ -12,7 +12,7 @@ To prevent that the code is ran in a live app we are using a `#ifdef FAKE_LOCATI
 
 ### MKMapView ###
 
-`#import "MKMapView+HTTPLocations` in your ViewController. To let the mapview listen for fake locations do a `[self.mapView listenForFakeLocations]`. To stop do a `[self.mapView stopListening]`. Everything else shoulde behave like your would expect.
+`#import "MKMapView+HTTPLocations` in your ViewController. To let the mapview listen for fake locations do a `[self.mapView listenForFakeLocations]`. To stop do a `[self.mapView stopListening]`. Everything else should behave like you would expect.
 
 ### CLLocationManager ###
 
