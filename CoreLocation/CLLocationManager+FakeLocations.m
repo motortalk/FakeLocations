@@ -1,19 +1,19 @@
 //
-//  CLLocationManager+HTTPLocations.m
-//  HTTPLocationsExample
+//  CLLocationManager+FakeLocations.m
+//  FakeLocationsExample
 //
 //  Created by Philip Brechler on 09.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.
 //
 
 #ifdef FAKE_LOCATIONS
-#import "CLLocationManager+HTTPLocations.h"
+#import "CLLocationManager+FakeLocations.h"
 #import "CLFakeHeading.h"
 
 static int __port = PORT;
 static dispatch_source_t input_src;
 
-@implementation CLLocationManager (HTTPLocations)
+@implementation CLLocationManager (FakeLocations)
 
 - (void)listenForFakeLocations {
     static struct sockaddr_in __si_me, __si_other;
@@ -21,7 +21,7 @@ static dispatch_source_t input_src;
     static char __buffer[BUFLEN];
     
     if ((__socket=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))==-1) {
-        //NSLog(@"CLLocationManager+HTTPLocations: socket error");
+        //NSLog(@"CLLocationManager+FakeLocations: socket error");
     }
     
     memset((char *) &__si_me, 0, sizeof(__si_me));
@@ -30,7 +30,7 @@ static dispatch_source_t input_src;
     __si_me.sin_addr.s_addr = htonl(INADDR_ANY);
     
     if (bind(__socket, (struct sockaddr*)&__si_me, sizeof(__si_me))==-1) {
-        //NSLog(@"CLLocationManager+HTTPLocations: bind error");
+        //NSLog(@"CLLocationManager+FakeLocations: bind error");
     }
     
     input_src = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, __socket, 0, dispatch_get_main_queue());
@@ -38,21 +38,21 @@ static dispatch_source_t input_src;
         socklen_t slen=sizeof(__si_other);
         ssize_t size = 0;
         if ((size = recvfrom(__socket, __buffer, BUFLEN, 0, (struct sockaddr*)&__si_other, &slen))==-1) {
-            //NSLog(@"CLLocationManager+HTTPLocations: recvfrom error");
+            //NSLog(@"CLLocationManager+FakeLocations: recvfrom error");
         }
-        //NSLog(@"CLLocationManager+HTTPLocations: received from %s:%d data = %s\n\n", inet_ntoa(__si_other.sin_addr), ntohs(__si_other.sin_port), __buffer);
+        //NSLog(@"CLLocationManager+FakeLocations: received from %s:%d data = %s\n\n", inet_ntoa(__si_other.sin_addr), ntohs(__si_other.sin_port), __buffer);
         __buffer[size] = 0;
         NSString *string = [NSString stringWithUTF8String:__buffer];
         
-        //NSLog(@"CLLocationManager+HTTPLocations: received string = %@", string);
+        //NSLog(@"CLLocationManager+FakeLocations: received string = %@", string);
         
         NSError *error = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
         if (!dict) {
-            //NSLog(@"CLLocationManager+HTTPLocations: error = %@", error);
+            //NSLog(@"CLLocationManager+FakeLocations: error = %@", error);
             [self reportErrorToDelegate];
         } else if (![dict isKindOfClass:[NSDictionary class]]) {
-            //NSLog(@"CLLocationManager+HTTPLocations: message error (not a dictionary)");
+            //NSLog(@"CLLocationManager+FakeLocations: message error (not a dictionary)");
             [self reportErrorToDelegate];
         } else {
             if (dict[@"latitude"] && dict[@"longitude"]){
@@ -82,17 +82,17 @@ static dispatch_source_t input_src;
                 }
                 
             } else {
-                NSLog(@"CLLocationManager+HTTPLocations: Nothing to send to location Manager, please check your JSON");
+                NSLog(@"CLLocationManager+FakeLocations: Nothing to send to location Manager, please check your JSON");
             }
         }
     });
     dispatch_source_set_cancel_handler(input_src,  ^{
-        NSLog(@"CLLocationManager+HTTPLocations: socket closed");
+        NSLog(@"CLLocationManager+FakeLocations: socket closed");
         close(__socket);
     });
     dispatch_resume(input_src);
     
-    NSLog(@"CLLocationManager+HTTPLocations: listening on %@:%d", [self getIPAddress], self.remoteNotificationsPort);
+    NSLog(@"CLLocationManager+FakeLocations: listening on %@:%d", [self getIPAddress], self.remoteNotificationsPort);
 }
 
 - (void)reportErrorToDelegate {

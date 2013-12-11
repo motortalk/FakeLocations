@@ -1,12 +1,12 @@
 //
-//  CLLocationManager+HTTPLocations.h
-//  HTTPLocationsExample
+//  MKMapView+FakeLocations.h
+//  FakeLocationsExample
 //
-//  Created by Philip Brechler on 09.12.13.
+//  Created by Philip Brechler on 10.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 #import <arpa/inet.h>
 #import <netinet/in.h>
@@ -23,14 +23,13 @@
 #define BUFLEN 512
 #define PORT 9931
 
-@interface CLLocationManager (HTTPLocations)
+@interface MKMapView (FakeLocations)
 
 - (void)setRemoteNotificationsPort:(int)port;
 - (int)remoteNotificationsPort;
 
 - (void)listenForFakeLocations;
 - (void)stopListening;
-
 
 - (NSString*)getIPAddress;
 

@@ -1,6 +1,6 @@
 //
-//  HTTPLocationsExampleTests.m
-//  HTTPLocationsExampleTests
+//  FakeLocationsExampleTests.m
+//  FakeLocationsExampleTests
 //
 //  Created by Philip Brechler on 09.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface HTTPLocationsExampleTests : XCTestCase
+@interface FakeLocationsExampleTests : XCTestCase
 
 @end
 
-@implementation HTTPLocationsExampleTests
+@implementation FakeLocationsExampleTests
 
 - (void)setUp
 {

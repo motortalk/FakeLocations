@@ -1,6 +1,6 @@
 //
 //  CoreLocationViewController.m
-//  HTTPLocationsExample
+//  FakeLocationsExample
 //
 //  Created by Philip Brechler on 11.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "CoreLocationViewController.h"
 #ifdef FAKE_LOCATIONS
-#import "CLLocationManager+HTTPLocations.h"
+#import "CLLocationManager+FakeLocations.h"
 #endif
 
 @interface CoreLocationViewController ()

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F8B6F963-5C2F-4292-BF98-BF631AEFED4B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HTTPLocationsExample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>45B2A12A-61FF-4E29-A07B-80F8543CF1EE</key>
+		<string>ssh://github.com/plaetzchen/HTTPLocations.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Example/HTTPLocationsExample.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>45B2A12A-61FF-4E29-A07B-80F8543CF1EE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/plaetzchen/HTTPLocations.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>45B2A12A-61FF-4E29-A07B-80F8543CF1EE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>45B2A12A-61FF-4E29-A07B-80F8543CF1EE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HTTPLocations</string>
+		</dict>
+	</array>
+</dict>
+</plist>

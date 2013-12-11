@@ -1,19 +1,19 @@
 //
-//  MKMapView+HTTPLocations.m
-//  HTTPLocationsExample
+//  MKMapView+FakeLocations.m
+//  FakeLocationsExample
 //
 //  Created by Philip Brechler on 10.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.
 //
 #ifdef FAKE_LOCATIONS
-#import "MKMapView+HTTPLocations.h"
+#import "MKMapView+FakeLocations.h"
 #import <objc/runtime.h>
 #import "MKFakeLocationProvider.h"
 #import "MKUserLocation+FakeLocation.h"
 static int __port = PORT;
 static dispatch_source_t input_src;
 
-@implementation MKMapView (HTTPLocations)
+@implementation MKMapView (FakeLocations)
 
 - (void)listenForFakeLocations {
     static struct sockaddr_in __si_me, __si_other;
@@ -21,7 +21,7 @@ static dispatch_source_t input_src;
     static int __socket;
     
     if ((__socket=socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP))==-1) {
-        //NSLog(@"MKMapView+HTTPLocations: socket error");
+        //NSLog(@"MKMapView+FakeLocations: socket error");
     }
     
     memset((char *) &__si_me, 0, sizeof(__si_me));
@@ -30,7 +30,7 @@ static dispatch_source_t input_src;
     __si_me.sin_addr.s_addr = htonl(INADDR_ANY);
     
     if (bind(__socket, (struct sockaddr*)&__si_me, sizeof(__si_me))==-1) {
-        //NSLog(@"MKMapView+HTTPLocations: bind error");
+        //NSLog(@"MKMapView+FakeLocations: bind error");
     }
     
     input_src = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, __socket, 0, dispatch_get_main_queue());
@@ -38,20 +38,20 @@ static dispatch_source_t input_src;
         socklen_t slen=sizeof(__si_other);
         ssize_t size = 0;
         if ((size = recvfrom(__socket, __buffer, BUFLEN, 0, (struct sockaddr*)&__si_other, &slen))==-1) {
-            //NSLog(@"MKMapView+HTTPLocations: recvfrom error");
+            //NSLog(@"MKMapView+FakeLocations: recvfrom error");
         }
-        //NSLog(@"MKMapView+HTTPLocations: received from %s:%d data = %s\n\n", inet_ntoa(__si_other.sin_addr), ntohs(__si_other.sin_port), __buffer);
+        //NSLog(@"MKMapView+FakeLocations: received from %s:%d data = %s\n\n", inet_ntoa(__si_other.sin_addr), ntohs(__si_other.sin_port), __buffer);
         __buffer[size] = 0;
         NSString *string = [NSString stringWithUTF8String:__buffer];
         
-        //NSLog(@"MKMapView+HTTPLocations: received string = %@", string);
+        //NSLog(@"MKMapView+FakeLocations: received string = %@", string);
         
         NSError *error = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
         if (!dict) {
-            NSLog(@"MKMapView+HTTPLocations: error = %@", error);
+            NSLog(@"MKMapView+FakeLocations: error = %@", error);
         } else if (![dict isKindOfClass:[NSDictionary class]]) {
-            NSLog(@"MKMapView+HTTPLocations: message error (not a dictionary)");
+            NSLog(@"MKMapView+FakeLocations: message error (not a dictionary)");
         } else {
             CLLocationDegrees latFromDict = [dict[@"latitude"] doubleValue];
             CLLocationDegrees longFromDict = [dict[@"longitude"] doubleValue];
@@ -68,11 +68,11 @@ static dispatch_source_t input_src;
         }
     });
     dispatch_source_set_cancel_handler(input_src,  ^{
-        NSLog(@"MKMapView+HTTPLocations: socket closed");
+        NSLog(@"MKMapView+FakeLocations: socket closed");
         close(__socket);
     });
     dispatch_resume(input_src);
-    NSLog(@"MKMapView+HTTPLocations: listening on %@:%d", [self getIPAddress], self.remoteNotificationsPort);
+    NSLog(@"MKMapView+FakeLocations: listening on %@:%d", [self getIPAddress], self.remoteNotificationsPort);
     [self updateFakedLocation];
 }
 

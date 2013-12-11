@@ -1,6 +1,6 @@
 //
 //  MKUserLocation+FakeLocation.h
-//  HTTPLocationsExample
+//  FakeLocationsExample
 //
 //  Created by Philip Brechler on 10.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.

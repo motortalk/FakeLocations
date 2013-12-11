@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  HTTPLocationsExample
+//  FakeLocationsExample
 //
 //  Created by Philip Brechler on 09.12.13.
 //  Copyright (c) 2013 Call a Nerd. All rights reserved.
@@ -8,7 +8,7 @@
 
 #import "MapViewViewController.h"
 #ifdef FAKE_LOCATIONS
-    #import "MKMapView+HTTPLocations.h"
+    #import "MKMapView+FakeLocations.h"
 #endif
 @interface MapViewViewController ()
 
