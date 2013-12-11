@@ -6,7 +6,7 @@ A hacky little thing to fake locations in MKMapView and CLLocationManager.
 
 The needed classes come as class extensions and two normal classes to imitate the behaviour of some classes needed.
 
-**This code is not ment to be used in testing not for AppStore apps! This code is in a very early state!** 
+**This code is ment to be used in testing and not in AppStore apps! This code is in a very early state!** 
 
 To prevent that the code is ran in a live app we are using a `#ifdef FAKE_LOCATIONS` macro in each file. See the example.
 
