@@ -70,10 +70,12 @@ static dispatch_source_t input_src;
                 if ([self.delegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]){
                     [self.delegate locationManager:self didUpdateLocations:@[locationToSend]];
                 }
-            } else if (dict[@"course"]) {
-                CLLocationDirection courseFromDict = [dict[@"course"] doubleValue];
+            } else if (dict[@"magneticHeading"]) {
+                CLLocationDirection magneticHeading = [dict[@"magneticHeading"] doubleValue];
+                CLLocationDirection trueHeading = [dict[@"trueHeading"] doubleValue];
+                CLLocationDirection headingAccuracy = [dict[@"headingAccuracy"] doubleValue];
                 
-                CLFakeHeading *fakeHeading = [[CLFakeHeading alloc]initWithMagneticHeading:courseFromDict trueHeading:courseFromDict headingAccuracy:10];
+                CLFakeHeading *fakeHeading = [[CLFakeHeading alloc]initWithMagneticHeading:magneticHeading trueHeading:trueHeading headingAccuracy:headingAccuracy];
                 
                 if ([self.delegate respondsToSelector:@selector(locationManager:didUpdateHeading:)]){
                     [self.delegate locationManager:self didUpdateHeading:(CLHeading *)fakeHeading];
