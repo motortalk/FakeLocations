@@ -26,7 +26,7 @@ Injection is done by using UDP sockets. Why's that? Because it enables everyone 
 
 `echo -n '{"latitude":52.12313131,"longitude":13.1231123123,"speed":40,"heading":100.1234,"verticalAccuracy":100,"horizontalAccuracy":200,"course":30.123}' | nc -4u -w1 <IPOFPHONE> 9931`
 
-Your don't need to supply all keys but latitude and longitude. Every missing key will be a 0'
+You don't need to supply all keys but latitude and longitude. Every missing key will be a 0'
 
 ### Injecting headings ###
 
