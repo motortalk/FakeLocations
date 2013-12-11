@@ -1,4 +1,4 @@
-# HTTPLocations #
+# FakeLocations #
 
 A hacky little thing to fake locations in MKMapView and CLLocationManager. 
 
@@ -12,11 +12,11 @@ To prevent that the code is ran in a live app we are using a `#ifdef FAKE_LOCATI
 
 ### MKMapView ###
 
-`#import "MKMapView+HTTPLocations` in your ViewController. To let the mapview listen for fake locations do a `[self.mapView listenForFakeLocations]`. To stop do a `[self.mapView stopListening]`. Everything else should behave like you would expect.
+`#import "MKMapView+FakeLocations` in your ViewController. To let the mapview listen for fake locations do a `[self.mapView listenForFakeLocations]`. To stop do a `[self.mapView stopListening]`. Everything else should behave like you would expect.
 
 ### CLLocationManager ###
 
-`#import "CLLocationManager+HTTPLocations` in your ViewController or location managment class. To let the location manager listen for fake locations do a `[self.locationManager listenForFakeLocations]`. To stop do a `[self.locationManager stopListening]`. Everything else should behave like you would expect. Right now the location manager will give you delegate calls for errors, heading and location updates.
+`#import "CLLocationManager+FakeLocations` in your ViewController or location managment class. To let the location manager listen for fake locations do a `[self.locationManager listenForFakeLocations]`. To stop do a `[self.locationManager stopListening]`. Everything else should behave like you would expect. Right now the location manager will give you delegate calls for errors, heading and location updates.
 
 ### Injecting locations ###
 
