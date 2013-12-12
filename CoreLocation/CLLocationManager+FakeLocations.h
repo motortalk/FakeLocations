@@ -21,7 +21,7 @@
  * apns max length is 256 bytes
  */
 #define BUFLEN 512
-#define PORT 9931
+#define PORT 9932
 
 @interface CLLocationManager (FakeLocations)
 
