@@ -37,3 +37,9 @@ If you need to inject headings to your CLLocationMaanger you can do this via a U
 `echo -n '{"magneticHeading":120.5,"trueHeading":110,"headingAccuracy":10}' | nc -4u -w1 <IPOFPHONE> 9931`
 
 As in locations missing keys will be a 0
+
+### Acknowledges ###
+
+This was inspired by and uses some code from [SimulatorRemoteNotifications](http://github.com/acoomans/SimulatorRemoteNotifications) by @acoomans
+
+Made by @plaetzchen while working at http://www.motor-talk.de
